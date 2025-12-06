@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  email     String   @unique
+  password  String
+  wishlist  String[] // product IDs
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  price       Float
+  sellerId    String   @db.ObjectId
+  images      String[] // GridFS file IDs
+  category    String?
+  location    String?
+  condition   String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  views       Int      @default(0)
+  wishCount   Int      @default(0)
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  fromUserId String  @db.ObjectId
+  toUserId   String  @db.ObjectId
+  productId  String? @db.ObjectId
+  content    String
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model Order {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  buyerId   String   @db.ObjectId
+  sellerId  String   @db.ObjectId
+  productIds String[]
+  total     Float
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
+
