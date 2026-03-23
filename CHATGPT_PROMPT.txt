@@ -1,0 +1,71 @@
+Generate a comprehensive abstract document (1-2 pages) for an online reseller marketplace platform project. The document should be professional, suitable for portfolio/technical documentation.
+
+PROJECT: Online Reseller Marketplace Platform (similar to OLX/Craigslist)
+
+TECH STACK:
+- Frontend: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4
+- Backend: Next.js API Routes, Node.js, TypeScript
+- Database: MongoDB with Prisma ORM, GridFS for image storage
+- Auth: NextAuth.js v4, JWT, bcryptjs
+- Real-time: Socket.io (WebSocket)
+- DevOps: Docker, Docker Compose, GitHub Actions CI/CD
+- Validation: Zod
+
+KEY FEATURES:
+1. Product browsing/search/filtering (public access)
+2. User authentication (signup/login with JWT)
+3. Product management (CRUD operations, multiple images via GridFS)
+4. Wishlist functionality
+5. Real-time messaging between buyers/sellers (Socket.io)
+6. Order management (checkout, tracking, status)
+7. User dashboard (listings, orders, messages, wishlist)
+8. Responsive mobile-first design
+
+DATABASE MODELS:
+- User (id, name, email, password, wishlist[], timestamps)
+- Product (id, title, description, price, sellerId, images[], category, location, condition, isActive, views, wishCount, timestamps)
+- Message (id, fromUserId, toUserId, productId?, content, read, createdAt)
+- Order (id, buyerId, sellerId, productIds[], total, status, createdAt)
+
+API ENDPOINTS:
+- Auth: /api/auth/signup, /api/auth/[...nextauth]
+- Products: /api/products (GET, POST), /api/products/[id] (GET, PUT, DELETE)
+- Images: /api/uploads/product (POST), /api/images/[id] (GET)
+- Wishlist: /api/wishlist (GET), /api/wishlist/[productId] (POST)
+- Messages: /api/messages (GET), WebSocket events
+- Orders: /api/orders (GET), /api/orders/checkout (POST)
+
+WEBSOCKET EVENTS:
+- Client→Server: joinRoom, sendMessage
+- Server→Client: newMessage, messageNotification
+
+SECURITY:
+- Password hashing (bcrypt)
+- JWT authentication
+- Server-side validation
+- Input validation (Zod)
+- File upload validation
+
+ARCHITECTURE HIGHLIGHTS:
+- Server-Side Rendering (SSR) with Next.js App Router
+- API-first RESTful architecture
+- Real-time bidirectional WebSocket communication
+- Scalable GridFS image storage
+- Type-safe Prisma operations
+- Docker containerization
+
+REQUIRED SECTIONS:
+1. Executive Summary (problem, solution, overview)
+2. Project Objectives (goals, features)
+3. Technology Stack (organized by category)
+4. System Architecture (high-level overview)
+5. Key Features & Functionality (detailed descriptions)
+6. Technical Highlights (achievements, optimizations)
+7. Security & Best Practices
+8. Deployment & DevOps
+9. Future Enhancements (optional)
+10. Conclusion
+
+STYLE: Professional, technical, clear, well-structured with headings, suitable for both technical and non-technical audiences. Format as markdown.
+
+Generate the complete abstract document now.
